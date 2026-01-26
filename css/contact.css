@@ -1,0 +1,221 @@
+/* ===== Reset & Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== Layout ===== */
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    color: #2c3e50;
+}
+
+/* ===== Table Styling ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th,
+table th {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+}
+
+table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e1e5ea;
+    font-size: 0.9rem;
+}
+
+/* Zebra rows */
+table tr:nth-child(even) td {
+    background-color: #f9fafb;
+}
+
+/* Hover effect */
+table tr:hover td {
+    background-color: #eef3f8;
+}
+
+/* ===== Status Badge (optional enhancement) ===== */
+td:nth-child(5) {
+    font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    main {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 700px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #e1e5ea;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    table td {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #e1e5ea;
+        position: relative;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #2c3e50;
+    }
+
+    table th {
+        display: none;
+    }
+}
+
+/* ===== Header ===== */
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #e1e5ea;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.2px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+header nav a:hover {
+    background: #eef3f8;
+}
+
+header nav a.active {
+    background: #2c3e50;
+    color: #ffffff;
+}
+
+/* Optional button-style link (ex: Add Contact) */
+header nav a.btn {
+    background: #2c3e50;
+    color: #ffffff;
+}
+
+header nav a.btn:hover {
+    background: #1f2a36;
+}
+
+/* ===== Footer ===== */
+footer {
+    margin-top: 40px;
+    background: #ffffff;
+    border-top: 1px solid #e1e5ea;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Responsive Header/Footer ===== */
+@media (max-width: 700px) {
+    .header-inner,
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
