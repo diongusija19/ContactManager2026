@@ -102,3 +102,5 @@ function resize_image($old_image_path, $new_image_path,
     // Free any memory associated with the old image
     imagedestroy($old_image);
 }
+
+?>

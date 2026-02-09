@@ -3,7 +3,9 @@
     require("database.php");
 
     $queryContacts = '
-        SELECT contactID, firstName, lastName, emailAddress, phoneNumber, status, dob, imageName FROM contacts';
+        SELECT c.contactID, c.firstName, c.lastName, c.emailAddress, c.phoneNumber, c.status, c.dob, c.imageName, c.typeID, t.contactType
+         FROM contacts c
+         LEFT JOIN types t ON c.typeID = t.typeID';
 
     $statement = $db->prepare($queryContacts);
     $statement->execute();
@@ -33,9 +35,11 @@
                     <th>Phone Number</th>
                     <th>Status</th>
                     <th>Birth Date</th>
+                    <th>Contact Type</th>
                     <th>Photo</th>
                     <th>&nbsp;</th> <!-- for update -->
                     <th>&nbsp;</th> <!-- for delete -->
+                    <th>&nbsp;</th> <!-- for view details -->
                 </tr>
 
                 <?php foreach ($contacts as $contact): ?>
@@ -46,6 +50,7 @@
                         <td><?php echo htmlspecialchars($contact['phoneNumber']); ?></td>
                         <td><?php echo htmlspecialchars($contact['status']); ?></td>
                         <td><?php echo htmlspecialchars($contact['dob']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['contactType']); ?></td>
                         <td>
                             <img src="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>"
                                 alt="<?php echo htmlspecialchars($contact['firstName'] . ' ' . $contact['lastName']); ?>" />
@@ -60,6 +65,12 @@
                             <form action="delete_contact.php" method="post">
                                 <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>" />
                                 <input type="submit" value="Delete" />
+                            </form>
+                        </td>
+                        <td>
+                            <form action="contact_details.php" method="post">
+                                <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>" />
+                                <input type="submit" value="View Details" />
                             </form>
                         </td>
                     </tr>

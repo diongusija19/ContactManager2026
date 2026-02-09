@@ -1,7 +1,13 @@
 <?php
     session_start();
 
-    require("database.php");    
+    require_once("database.php");
+    
+    $query = 'SELECT typeID, contactType from types';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $types = $statement->fetchAll();
+    $statement->closeCursor();    
 
 ?>
 
@@ -41,6 +47,15 @@
 
                     <label>Birth date:</label>
                     <input type="date" name="dob" /><br />
+
+                    <label>Contact Type:</label>
+                    <select name="type_id">
+                        <?php foreach ($types as $type): ?>
+                            <option value="<?php echo $type['typeID']; ?>">
+                                <?php echo $type['contactType']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select><br />
 
                     <label>Upload Image:</label>
                     <input type="file" name="file1" /><br />
