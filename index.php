@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['isLoggedIn'])) {
+        header("Location: login_form.php");
+        die();
+    }
 
     require("database.php");
 
@@ -26,7 +32,7 @@
         <?php include("header.php"); ?>
 
         <main>
-            <h2>Contact List</h2>
+            <h2>Contact List (<?php echo "Logged In User: " . $_SESSION['userName']; ?>)</h2>
             <table>
                 <tr>
                     <th>First Name</th>
@@ -37,9 +43,7 @@
                     <th>Birth Date</th>
                     <th>Contact Type</th>
                     <th>Photo</th>
-                    <th>&nbsp;</th> <!-- for update -->
-                    <th>&nbsp;</th> <!-- for delete -->
-                    <th>&nbsp;</th> <!-- for view details -->
+                    <th>&nbsp;</th> 
                 </tr>
 
                 <?php foreach ($contacts as $contact): ?>
@@ -79,6 +83,8 @@
             </table>
 
             <p><a href="add_contact_form.php">Add Contact</a></p>
+
+            <p><a href="logout.php">Logout</a></p>
 
         </main>
 
